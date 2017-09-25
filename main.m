@@ -50,11 +50,7 @@ end
 
 % --- Executes just before main is made visible.
 function main_OpeningFcn(hObject, eventdata, handles, varargin)
-% This function has no output args, see OutputFcn.
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to main (see VARARGIN)
+
 
 % Choose default command line output for main
 handles.output = hObject;
@@ -130,11 +126,12 @@ while (1)  % if an option has only 1 value, the program will automatically skip 
             [category,pos] = unique({array.category});
             [~,posSort] = sort(pos);
             category = category(posSort);
-            str = '-----Choose a category-----';
+            str = '------ Choose a category ------';
             for i = 1:length(category)
                 str = char(str,category{i});
             end
             set(handles.popupmenu1,'string',str);
+            set(handles.description,'visible','on');
             step = step + 1;
             break;
 
@@ -149,8 +146,9 @@ while (1)  % if an option has only 1 value, the program will automatically skip 
             category_filter = array(categoryPos);
             brand = unique({category_filter.brand});
             step = step + 1;
+            set(handles.description,'visible','off');
             if (length(brand) > 1)
-               str = '------Choose a brand------';
+               str = '------ Choose a brand ------';
                 for i = 1:length(brand)
                     str = char(str,brand{i});
                 end
@@ -174,7 +172,7 @@ while (1)  % if an option has only 1 value, the program will automatically skip 
             cpu = unique({brand_filter.cpu});
             step = step + 1;
             if (length(cpu) > 1)
-               str = '---Choose a CPU type---';
+               str = '---- Choose a CPU type ----';
                 for i = 1:length(cpu)
                     str = char(str,cpu{i});
                 end
@@ -198,7 +196,7 @@ while (1)  % if an option has only 1 value, the program will automatically skip 
             screensize = unique({cpu_filter.screensize});
             step = step + 1;
             if (length(screensize) > 1)
-                str = '----Choose screensize----';
+                str = '---- Choose screensize ----';
                 for i = 1:length(screensize)
                     str = char(str,screensize{i});
                 end
@@ -222,7 +220,7 @@ while (1)  % if an option has only 1 value, the program will automatically skip 
             ram = unique({screensize_filter.ram});
             step = step + 1;
             if (length(ram) > 1)
-                str = '----Choose RAM capacity----';
+                str = '---- Choose RAM capacity ----';
                 for i = 1:length(ram)
                     str = char(str,ram{i});
                 end
@@ -246,7 +244,7 @@ while (1)  % if an option has only 1 value, the program will automatically skip 
             gpu = unique({ram_filter.gpu});
             step = step + 1;
             if (length(gpu) > 1)
-                str = '-----Discrete graphics-----';
+                str = '----- Discrete graphics -----';
                 for i = 1:length(gpu)
                     str = char(str,gpu{i});
                 end
@@ -270,7 +268,7 @@ while (1)  % if an option has only 1 value, the program will automatically skip 
             storage = unique({gpu_filter.storage});
             step = step + 1;
             if (length(storage) > 1)
-               str = '-----Storage type-----';
+               str = '----- Storage type -----';
                 for i = 1:length(storage)
                     str = char(str,storage{i});
                 end
@@ -293,7 +291,7 @@ while (1)  % if an option has only 1 value, the program will automatically skip 
             capacity = unique({storage_filter.capacity});
             step = step + 1;
             if (length(capacity) > 1)
-               str = '----Storage capacity----';
+               str = '----- Storage capacity -----';
                 for i = 1:length(capacity)
                     str = char(str,capacity{i});
                 end
@@ -317,7 +315,7 @@ while (1)  % if an option has only 1 value, the program will automatically skip 
             resolution = unique({capacity_filter.resolution});
             step = step + 1;
             if (length(resolution) > 1)
-                str = '----Screen resolution----';
+                str = '----- Screen resolution -----';
                 for i = 1:length(resolution)
                     str = char(str,resolution{i});
                 end
@@ -342,7 +340,7 @@ while (1)  % if an option has only 1 value, the program will automatically skip 
             price = unique({resolution_filter.price});
             step = step + 1;
             if (length(price) > 1)
-                str = '--Which do you prefer?--';
+                str = '--- Which do you prefer? ---';
                 for i = 1:length(price)
                     str = char(str,[model{i} '  -   ' price{i}]);
                 end
